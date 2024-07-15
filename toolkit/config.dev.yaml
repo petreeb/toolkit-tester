@@ -1,0 +1,20 @@
+environment:
+  name: benpetree
+  project: benpetree
+  type: dev
+  selected:
+    - modules/data_foundation/ice-cream-api
+
+variables:
+  modules:
+    data_foundation:
+      ice_cream_api_source_dataSetExternalId: ds_ice_cream_api
+      ice-cream-api:
+        icapi_asset_extractor_source_id: '1234'
+        icapi_timeseries_extractor_source_id: '4567'
+        CDF_PROJECT: benpetree
+        IDP_CLIENT_ID: 24aee5b2-d303-4eac-a2cf-80491f2199cf
+        IDP_CLIENT_SECRET: NOS8Q~vzrhdzIQ3CTGlOQtbldFnqR.0Tei1.GddW
+        IDP_TENANT_ID: b7ac094b-ffd9-4c96-a67d-eab64a07eca3
+        CDF_URL: https://bluefield.cognitedata.com
+        IDP_SCOPES: https://bluefield.cognitedata.com/.default

@@ -1,0 +1,27 @@
+api:
+  url: https://ice-cream-factory-staging.inso-internal.cognite.ai
+cognite:
+  extraction_pipeline:
+    external-id: ep_icapi_datapoints
+  host: ${CDF_URL}
+  idp-authentication:
+    client-id: ${IDP_CLIENT_ID}
+    scopes:
+    - ${IDP_SCOPES}
+    secret: ${IDP_CLIENT_SECRET}
+    tenant: ${IDP_TENANT_ID}
+  project: ${CDF_PROJECT}
+extractor:
+  backfill: false
+  data_set_ext_id: ds_ice_cream_api
+  days: 30
+  sites:
+  - Oslo
+  - Houston
+  state_store:
+    raw:
+      database: State Store
+      table: Ice Cream API Datapoints Extractor
+logger:
+  console:
+    level: INFO

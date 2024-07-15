@@ -1,0 +1,31 @@
+extractor:
+  state_store:
+    raw:
+      database: "State Store"
+      table: "Ice Cream API Timeseries Extractor"
+
+  data_set_ext_id: ds_ice_cream_api
+  upload_interval: 5
+
+api:
+  # url: https://ice-cream-factory.inso-internal.cognite.ai
+  url: https://ice-cream-factory-staging.inso-internal.cognite.ai
+
+cognite:
+  host: ${CDF_URL}
+  project: ${CDF_PROJECT}
+
+  idp-authentication:
+    tenant: ${IDP_TENANT_ID}
+
+    client-id: ${IDP_CLIENT_ID}
+    secret: ${IDP_CLIENT_SECRET}
+    scopes:
+      - ${IDP_SCOPES}
+
+  extraction_pipeline:
+    external-id: ep_icapi_timeseries
+
+logger:
+  console:
+    level: INFO

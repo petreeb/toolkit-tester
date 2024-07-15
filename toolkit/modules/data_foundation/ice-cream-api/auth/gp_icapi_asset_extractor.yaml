@@ -1,0 +1,14 @@
+name: gp_icapi_asset_extractor
+sourceId: '{{icapi_asset_extractor_source_id}}'
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - projectsAcl:
+      actions: [LIST, READ]
+      scope:
+        all: {}
+  - assetsAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ ice_cream_api_source_dataSetExternalId }}]
