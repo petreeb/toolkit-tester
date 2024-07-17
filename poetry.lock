@@ -302,13 +302,13 @@ python-json-logger = ">=2.0.7,<3.0.0"
 
 [[package]]
 name = "cognite-sdk"
-version = "7.52.3"
+version = "7.54.2"
 description = "Cognite Python SDK"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "cognite_sdk-7.52.3-py3-none-any.whl", hash = "sha256:eff71cd93e1d5b7ac78ac99b263671246bab3705c2e6ed000d437e77573f19ab"},
-    {file = "cognite_sdk-7.52.3.tar.gz", hash = "sha256:893992d9ee385e0c4224278780209c849a1157bb6bbde62a698eec67d5d58503"},
+    {file = "cognite_sdk-7.54.2-py3-none-any.whl", hash = "sha256:537056a09c9710cd4dd5945b269ac518672ff418b813a6d69f2e4b5320c191f8"},
+    {file = "cognite_sdk-7.54.2.tar.gz", hash = "sha256:b7177da159b83fa90cee9cae0eea8b01f28c420787256d28f3facccd613aac18"},
 ]
 
 [package.dependencies]
@@ -331,21 +331,21 @@ yaml = ["PyYAML (>=6.0,<7.0)"]
 
 [[package]]
 name = "cognite-toolkit"
-version = "0.2.6"
+version = "0.2.14"
 description = "Official Cognite Data Fusion tool for project templates and configuration deployment"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "cognite_toolkit-0.2.6-py3-none-any.whl", hash = "sha256:950caf9ca8e2dbb3cf7610b6a6ec76820cdb66ac1facf12a13f320eada3d82f0"},
-    {file = "cognite_toolkit-0.2.6.tar.gz", hash = "sha256:1d1415607c4c4086de7b4222c495c8ea74278a71df0ddbc0e4bc36afa316d303"},
+    {file = "cognite_toolkit-0.2.14-py3-none-any.whl", hash = "sha256:a436848d58f0c8d69d873c6881e5e22ac81ab3fa6050ee7de186ac48796b324a"},
+    {file = "cognite_toolkit-0.2.14.tar.gz", hash = "sha256:fff80a91f35d8c455b32d5a441b3a49e821d345435794928a56801fe04d1ed21"},
 ]
 
 [package.dependencies]
 cognite-extractor-utils = ">=7"
 cognite-logger = ">=0.6,<0.7"
-cognite-sdk = {version = ">=7.52.0,<8.0.0", extras = ["pandas"]}
+cognite-sdk = {version = ">=7.54.1,<8.0.0", extras = ["pandas"]}
 mixpanel = ">=4.10.1,<5.0.0"
-packaging = ">=24.1,<25.0"
+packaging = ">=22.0,<25.0"
 pandas = ">=1.5.3,<3.0"
 python-dotenv = ">=1.0.0,<2.0.0"
 pyyaml = ">=6.0.1,<7.0.0"
@@ -1274,4 +1274,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "3a9d6da5ee6b47f04b2170531a4467041910905086be7e3de02e3c95a9385f2b"
+content-hash = "402dde596d76576add277bce25bb2a8369848ed44de71d0aa8467ed914de03e1"

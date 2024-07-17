@@ -13,3 +13,19 @@
     IDP_CLIENT_ID: {{ IDP_CLIENT_ID }}
     IDP_CLIENT_SECRET: {{ IDP_CLIENT_SECRET }}
     IDP_SCOPES: {{ IDP_SCOPES }}
+  
+- name: Ice Cream API Timeseries Extractor
+  externalId: Ice Cream API Timeseries Extractor
+  owner: Ben Petree
+  description: Extracts Timeseries metadata from the Ice Cream API
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ CDF_PROJECT }}
+    CDF_URL: {{ CDF_URL }}
+    IDP_TENANT_ID: {{ IDP_TENANT_ID }}
+    IDP_CLIENT_ID: {{ IDP_CLIENT_ID }}
+    IDP_CLIENT_SECRET: {{ IDP_CLIENT_SECRET }}
+    IDP_SCOPES: {{ IDP_SCOPES }}
