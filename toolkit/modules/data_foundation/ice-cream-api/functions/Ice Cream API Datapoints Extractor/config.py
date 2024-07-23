@@ -24,6 +24,7 @@ class ExtractorConfig:
 class Config(BaseConfig):
     api: ApiConfig
     extractor: ExtractorConfig
+    type: str
 
 # @dataclass
 # class BackFillConfig:

@@ -48,11 +48,9 @@ class IceCreamFactoryAPI:
         response = self.get_response(headers={}, url_suffix="datapoints/oee", params=params)
 
         datapoints_dict = orjson.loads(response.content)
-        datapoints_to_upload = {}
 
-        for timeseries in datapoints_dict:
-            ts_datapoints = datapoints_dict[timeseries]
+        for ts, dps in datapoints_dict.items():
             # convert timestamp to ms (*1000) for CDF uploads
-            datapoints_to_upload[timeseries] = [(dp[0] * 1000, dp[1]) for dp in ts_datapoints]
+            datapoints_dict[ts] = [(dp[0] * 1000, dp[1]) for dp in dps]
 
-        return datapoints_to_upload
+        return datapoints_dict

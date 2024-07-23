@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
 from threading import Event
-from typing import Union, Sequence
 import yaml
 
 from cognite.client import CogniteClient
@@ -14,13 +13,11 @@ from ice_cream_factory_api import IceCreamFactoryAPI
 
 def get_timeseries_for_site(client: CogniteClient, site, config: Config):
     this_site = site.lower()
-    print(f"Getting TimeSeries for {site}")
     ts = client.time_series.list(
         data_set_external_ids=config.extractor.data_set_ext_id,
         metadata={"site": this_site},
         limit=None
     )
-
 
     # filter returned list because the API returns connected timeseries. planned_status -> status, good -> count
     ts = [item for item in ts if any(substring in item.external_id for substring in ["planned_status", "good"])]
@@ -38,46 +35,47 @@ def run_extractor(
     upload_queue = TimeSeriesUploadQueue(
         client,
         post_upload_function=states.post_upload_handler(),
-        max_queue_size=100000,
+        max_queue_size=500000,
         trigger_log_level="INFO",
         thread_name="Timeseries Upload Queue",
     )
 
-    for site in config.extractor.sites:
-        total_dps = 0
+    for site in config.extractor.sites:       
+        upload_queue.logger.info(f"Getting TimeSeries for {site}")
         time_series = get_timeseries_for_site(client, site, config)
 
-        ts_external_ids = [ts.external_id for ts in time_series]
-
-        latest_dps = {
-            dp.external_id: dp.timestamp
-            for dp in client.time_series.data.retrieve_latest(
-                external_id=ts_external_ids,
-                ignore_unknown_ids=True
-            )
-        }
+        if not config.extractor.backfill:
+            # Get all the latest datapoints in one API call
+            latest_dps = {
+                dp.external_id: dp.timestamp
+                for dp in client.time_series.data.retrieve_latest(
+                    external_id=[ts.external_id for ts in time_series],
+                    ignore_unknown_ids=True
+                )
+            }
 
         for ts in time_series:
-            latest = latest_dps[ts.external_id][0] if ts.external_id in latest_dps and latest_dps[ts.external_id] else None
-            start = latest if latest else now - increment
-            end = start + increment
+            # figure out the window of datapoints to pull
+            if not config.extractor.backfill:
+                latest = latest_dps[ts.external_id][0] if ts.external_id in latest_dps and latest_dps[ts.external_id] else None
+                start = latest if latest else now - increment
+            else:
+                start = now - timedelta(days=config.extractor.days).total_seconds() * 1000
+            end = now
 
-            while start <= now and not stop_event.is_set():
-                dps = ice_cream_api.get_datapoints(timeseries_ext_id=ts.external_id, start=start, end=end)
-                for external_id, datapoints in dps.items():
-                    upload_queue.add_to_upload_queue(external_id=external_id, datapoints=datapoints)
-                    total_dps += len(datapoints)
+            dps = ice_cream_api.get_datapoints(timeseries_ext_id=ts.external_id, start=start, end=end)
+            for external_id, datapoints in dps.items():
+                upload_queue.add_to_upload_queue(external_id=external_id, datapoints=datapoints)
 
-                start += increment
-                end += increment
+            upload_queue.logger.info(f"Queued {len(datapoints)} {ts.external_id} datapoints for upload")
 
-            # trigger upload for this timeseries
+        # trigger upload for this site
         upload_queue.upload()
-        print(f"Finished uploading {total_dps} datapoints for {site}")
 
 def handle(client: CogniteClient = None, data = None):
     config_file_path = "extractor_config.yaml"
 
+    # Can't pass parameters to the Extractor, so modify the config.
     if data:
         sites = data.get("sites")
         backfill = data.get("backfill")
@@ -85,7 +83,7 @@ def handle(client: CogniteClient = None, data = None):
 
         with open(config_file_path) as config_file:
             config = yaml.safe_load(config_file)
-        
+
         extractor_config = config["extractor"]
 
         if sites:
@@ -96,10 +94,10 @@ def handle(client: CogniteClient = None, data = None):
                 extractor_config["days"] = days
 
         with open(config_file_path, 'w') as outfile:
-            yaml.dump(config, outfile)
+            yaml.dump(config, outfile, line_break="\n")
 
     with Extractor(
-        name="Ice Cream API Assets Extractor",
+        name="Ice Cream API Datapoints Extractor",
         description="An extractor that ingest Timeseries' Datapoints from the Ice Cream Factory API to CDF clean",
         config_class=Config,
         version="1.0",
@@ -109,4 +107,4 @@ def handle(client: CogniteClient = None, data = None):
         extractor.run()
     
 if __name__ == "__main__":
-    handle(data={"sites": ["Oslo", "Houston"]})
+    handle(data={"sites": ["Houston", "Oslo", "Kuala Lumpur"], "backfill": True, "days": 30})

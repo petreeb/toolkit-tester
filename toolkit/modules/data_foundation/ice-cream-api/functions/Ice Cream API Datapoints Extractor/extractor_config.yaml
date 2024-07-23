@@ -12,12 +12,13 @@ cognite:
     tenant: ${IDP_TENANT_ID}
   project: ${CDF_PROJECT}
 extractor:
-  backfill: false
+  backfill: true
   data_set_ext_id: ds_ice_cream_api
   days: 30
   sites:
-  - Oslo
   - Houston
+  - Oslo
+  - Kuala Lumpur
   state_store:
     raw:
       database: State Store
@@ -25,3 +26,4 @@ extractor:
 logger:
   console:
     level: INFO
+type: local
