@@ -9,6 +9,7 @@ variables:
   modules:
     data_foundation:
       ice_cream_api_source_dataSetExternalId: ds_ice_cream_api
+      uc_oee_dataSetExternalId: ds_uc_oee
       ice-cream-api:
         icapi_asset_extractor_source_id: '1234'
         icapi_timeseries_extractor_source_id: '4567'

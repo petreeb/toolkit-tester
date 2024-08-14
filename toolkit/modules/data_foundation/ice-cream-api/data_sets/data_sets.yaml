@@ -1,2 +1,4 @@
 - externalId: {{ ice_cream_api_source_dataSetExternalId }}
   name: Ice Cream Factory Source Data
+- externalId: {{ uc_oee_dataSetExternalId }}
+  name: Overall Equipment Effectiveness Use Case Data

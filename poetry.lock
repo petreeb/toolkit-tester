@@ -302,13 +302,13 @@ python-json-logger = ">=2.0.7,<3.0.0"
 
 [[package]]
 name = "cognite-sdk"
-version = "7.54.2"
+version = "7.54.8"
 description = "Cognite Python SDK"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "cognite_sdk-7.54.2-py3-none-any.whl", hash = "sha256:537056a09c9710cd4dd5945b269ac518672ff418b813a6d69f2e4b5320c191f8"},
-    {file = "cognite_sdk-7.54.2.tar.gz", hash = "sha256:b7177da159b83fa90cee9cae0eea8b01f28c420787256d28f3facccd613aac18"},
+    {file = "cognite_sdk-7.54.8-py3-none-any.whl", hash = "sha256:935d0e844236abe51fad82622115d585f26dd7fd2f1c67b34c11abba0c5455a0"},
+    {file = "cognite_sdk-7.54.8.tar.gz", hash = "sha256:69f41a56b27ba7830e84a09f6d7b732ec2c5f0b6c061caded894f43aef839b5d"},
 ]
 
 [package.dependencies]
@@ -331,19 +331,19 @@ yaml = ["PyYAML (>=6.0,<7.0)"]
 
 [[package]]
 name = "cognite-toolkit"
-version = "0.2.14"
+version = "0.2.16"
 description = "Official Cognite Data Fusion tool for project templates and configuration deployment"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "cognite_toolkit-0.2.14-py3-none-any.whl", hash = "sha256:a436848d58f0c8d69d873c6881e5e22ac81ab3fa6050ee7de186ac48796b324a"},
-    {file = "cognite_toolkit-0.2.14.tar.gz", hash = "sha256:fff80a91f35d8c455b32d5a441b3a49e821d345435794928a56801fe04d1ed21"},
+    {file = "cognite_toolkit-0.2.16-py3-none-any.whl", hash = "sha256:d0ed3beb12c1d0bfdba8a41727f5fff3830fdfaafe746140d0c6dc6cb5f0f2c5"},
+    {file = "cognite_toolkit-0.2.16.tar.gz", hash = "sha256:0846cdd8d70473068de7cefa3aceca78fa63a653d38a0e9fd3a2506b57342318"},
 ]
 
 [package.dependencies]
 cognite-extractor-utils = ">=7"
 cognite-logger = ">=0.6,<0.7"
-cognite-sdk = {version = ">=7.54.1,<8.0.0", extras = ["pandas"]}
+cognite-sdk = {version = ">=7.54.8,<8.0.0", extras = ["pandas"]}
 mixpanel = ">=4.10.1,<5.0.0"
 packaging = ">=22.0,<25.0"
 pandas = ">=1.5.3,<3.0"
@@ -873,6 +873,17 @@ files = [
 test = ["enum34", "ipaddress", "mock", "pywin32", "wmi"]
 
 [[package]]
+name = "py"
+version = "1.11.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+files = [
+    {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
+    {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
+]
+
+[[package]]
 name = "pycparser"
 version = "2.22"
 description = "C parser in Python"
@@ -1104,6 +1115,21 @@ requests = ">=2.0.0"
 rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
 
 [[package]]
+name = "retry"
+version = "0.9.2"
+description = "Easy to use retry decorator."
+optional = false
+python-versions = "*"
+files = [
+    {file = "retry-0.9.2-py2.py3-none-any.whl", hash = "sha256:ccddf89761fa2c726ab29391837d4327f819ea14d244c232a1d24c67a2f98606"},
+    {file = "retry-0.9.2.tar.gz", hash = "sha256:f8bfa8b99b69c4506d6f5bd3b0aabf77f98cdb17f3c9fc3f5ca820033336fba4"},
+]
+
+[package.dependencies]
+decorator = ">=3.4.2"
+py = ">=1.4.26,<2.0.0"
+
+[[package]]
 name = "rich"
 version = "13.7.1"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
@@ -1274,4 +1300,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "402dde596d76576add277bce25bb2a8369848ed44de71d0aa8467ed914de03e1"
+content-hash = "5794030a246ac2b5b4155c5b74f49e1794398a5e5814c2274732592da878f83e"

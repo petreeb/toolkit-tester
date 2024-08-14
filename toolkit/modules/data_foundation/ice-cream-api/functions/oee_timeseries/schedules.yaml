@@ -1,0 +1,92 @@
+- name: Run calculations every 10 minutes for last hour of data
+  cronExpression: "5-59/10 * * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Oslo
+      - Hannover
+      - Nuremberg
+      - Marseille
+      - Houston
+      - Sao Paulo
+      - Kuala Lumpur
+      - Chicago
+      - Rotterdam
+      - London
+    lookback_minutes: 60
+
+- name: Run calculations once a day for 30 days history (Oslo)
+  cronExpression: "0 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Oslo
+    lookback_minutes: 7200
+
+- name: Run calculations once a day for 30 days history (Nuremberg)
+  cronExpression: "10 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Nuremberg
+    lookback_minutes: 7200
+
+- name: Run calculations once a day for 30 days history (Marseille)
+  cronExpression: "20 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Marseille
+    lookback_minutes: 7200
+
+- name: Run calculations once a day for 30 days history (Houston)
+  cronExpression: "30 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Houston
+    lookback_minutes: 7200
+
+- name: Run calculations once a day for 30 days history (Sao Paulo)
+  cronExpression: "40 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Sao Paulo
+    lookback_minutes: 7200
+
+
+- name: Run calculations once a day for 30 days history (Kuala Lumpur)
+  cronExpression: "50 1 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Kuala Lumpur
+    lookback_minutes: 7200
+
+
+- name: Run calculations once a day for 30 days history (Chicago)
+  cronExpression: "0 2 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Chicago
+    lookback_minutes: 7200
+
+
+- name: Run calculations once a day for 30 days history (Rotterdam)
+  cronExpression: "10 2 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - Rotterdam
+    lookback_minutes: 7200
+
+
+- name: Run calculations once a day for 30 days history (London)
+  cronExpression: "20 2 * * *"
+  functionExternalId: oee_timeseries
+  data:
+    sites:
+      - London
+    lookback_minutes: 7200

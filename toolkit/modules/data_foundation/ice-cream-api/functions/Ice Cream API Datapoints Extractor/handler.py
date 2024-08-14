@@ -1,6 +1,7 @@
+from ast import literal_eval
 from datetime import datetime, timedelta, timezone
+import os
 from threading import Event
-import yaml
 
 from cognite.client import CogniteClient
 from cognite.extractorutils import Extractor
@@ -27,6 +28,16 @@ def run_extractor(
     client: CogniteClient, states: AbstractStateStore, config: Config, stop_event: Event
 ) -> None:
 
+    # The only way to pass variables to and Extractor's run function
+    if "SITES" in os.environ:
+        config.extractor.sites = literal_eval(os.environ["SITES"])
+    if "BACKFILL" in os.environ:
+        print(os.environ["BACKFILL"])
+        config.extractor.backfill = True if os.environ["BACKFILL"] == "True" else False
+        print(config.extractor.backfill)
+        if "HOURS" in os.environ:
+            config.extractor.hours = int(os.environ["HOURS"])
+
     now = datetime.now(timezone.utc).timestamp() * 1000
     increment = timedelta(seconds=7200).total_seconds() * 1000
     
@@ -41,7 +52,7 @@ def run_extractor(
     )
 
     for site in config.extractor.sites:       
-        upload_queue.logger.info(f"Getting TimeSeries for {site}")
+        print(f"Getting TimeSeries for {site}")
         time_series = get_timeseries_for_site(client, site, config)
 
         if not config.extractor.backfill:
@@ -60,14 +71,14 @@ def run_extractor(
                 latest = latest_dps[ts.external_id][0] if ts.external_id in latest_dps and latest_dps[ts.external_id] else None
                 start = latest if latest else now - increment
             else:
-                start = now - timedelta(days=config.extractor.days).total_seconds() * 1000
+                start = now - timedelta(hours=config.extractor.hours).total_seconds() * 1000
             end = now
 
             dps = ice_cream_api.get_datapoints(timeseries_ext_id=ts.external_id, start=start, end=end)
             for external_id, datapoints in dps.items():
                 upload_queue.add_to_upload_queue(external_id=external_id, datapoints=datapoints)
 
-            upload_queue.logger.info(f"Queued {len(datapoints)} {ts.external_id} datapoints for upload")
+            print(f"Queued {len(datapoints)} {ts.external_id} datapoints for upload")
 
         # trigger upload for this site
         upload_queue.upload()
@@ -75,26 +86,18 @@ def run_extractor(
 def handle(client: CogniteClient = None, data = None):
     config_file_path = "extractor_config.yaml"
 
-    # Can't pass parameters to the Extractor, so modify the config.
+    # Can't pass parameters to the Extractor, so create environment variables
     if data:
         sites = data.get("sites")
         backfill = data.get("backfill")
-        days = data.get("days")
-
-        with open(config_file_path) as config_file:
-            config = yaml.safe_load(config_file)
-
-        extractor_config = config["extractor"]
+        hours = data.get("hours")
 
         if sites:
-            extractor_config["sites"] = sites
+            os.environ["SITES"] = f"{sites}"
         if backfill:
-            extractor_config["backfill"] = backfill
-            if days:
-                extractor_config["days"] = days
-
-        with open(config_file_path, 'w') as outfile:
-            yaml.dump(config, outfile, line_break="\n")
+            os.environ["BACKFILL"] = f"{backfill}"
+            if hours:
+                os.environ["HOURS"] = f"{hours}"
 
     with Extractor(
         name="Ice Cream API Datapoints Extractor",
@@ -105,6 +108,4 @@ def handle(client: CogniteClient = None, data = None):
         run_handle=run_extractor,
     ) as extractor:
         extractor.run()
-    
-if __name__ == "__main__":
-    handle(data={"sites": ["Houston", "Oslo", "Kuala Lumpur"], "backfill": True, "days": 30})
+
