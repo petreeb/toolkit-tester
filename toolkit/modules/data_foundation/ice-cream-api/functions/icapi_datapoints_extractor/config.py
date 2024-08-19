@@ -5,11 +5,8 @@ from cognite.extractorutils.configtools import BaseConfig, RawStateStoreConfig, 
 
 
 @dataclass
-class ApiConfig:
-    url: str
-
-@dataclass
 class ExtractorConfig:
+    api_url: str
     backfill: bool
     data_set_ext_id: str
     hours: int
@@ -22,6 +19,4 @@ class ExtractorConfig:
 
 @dataclass
 class Config(BaseConfig):
-    api: ApiConfig
     extractor: ExtractorConfig
-    type: str

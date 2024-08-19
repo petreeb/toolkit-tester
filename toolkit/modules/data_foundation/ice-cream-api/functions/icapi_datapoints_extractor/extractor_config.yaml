@@ -1,5 +1,3 @@
-api:
-  url: https://ice-cream-factory-staging.inso-internal.cognite.ai
 cognite:
   extraction_pipeline:
     external-id: ep_icapi_datapoints
@@ -12,6 +10,7 @@ cognite:
     tenant: ${IDP_TENANT_ID}
   project: ${CDF_PROJECT}
 extractor:
+  api_url: https://ice-cream-factory-staging.inso-internal.cognite.ai
   backfill: false
   data_set_ext_id: ds_ice_cream_api
   hours: 1

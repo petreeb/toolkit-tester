@@ -1,10 +1,6 @@
 from typing import Dict, Union
 
-from cognite.client.data_classes import Asset
-import orjson
-from requests import adapters
-from requests import Response
-from requests import Session
+from requests import adapters, Response, Session
 
 
 class IceCreamFactoryAPI:
@@ -32,16 +28,10 @@ class IceCreamFactoryAPI:
         response.raise_for_status()
         return response
 
-    def get_assets(self):
+    def get_sites_csv(self):
         """
-        Get sites from the Ice Cream API and create a list Assets
+        Get a dataframe for all sites from the Ice Cream API's site/{city}/csv endpoint
         """
-        response = self.get_response(headers={}, url_suffix="site/all")
+        response = self.get_response(headers={}, url_suffix=f"site/all/csv")
 
-        sites = orjson.loads(response.content)
-        
-        # remove labels from list of sites
-        sites = [{k:v for k,v in site.items() if k != "labels"} for site in sites]
-        assets = [Asset(**site) for site in sites]
-
-        return assets
+        return response.text

@@ -1,5 +1,5 @@
 - name: Ice Cream API Assets Extractor
-  externalId: Ice Cream API Assets Extractor
+  externalId: icapi_assets_extractor
   owner: Bootcamp Team
   description: Extracts Asset data from the Ice Cream API
   metadata:
@@ -15,7 +15,7 @@
     IDP_SCOPES: {{ IDP_SCOPES }}
 
 - name: Ice Cream API Datapoints Extractor
-  externalId: Ice Cream API Datapoints Extractor
+  externalId: icapi_datapoints_extractor
   owner: Bootcamp Team
   description: Extracts Datapoints from the Ice Cream API
   metadata:
@@ -31,7 +31,7 @@
     IDP_SCOPES: {{ IDP_SCOPES }}
   
 - name: Ice Cream API Timeseries Extractor
-  externalId: Ice Cream API Timeseries Extractor
+  externalId: icapi_timeseries_extractor
   owner: Bootcamp Team
   description: Extracts Timeseries metadata from the Ice Cream API
   metadata:

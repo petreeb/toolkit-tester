@@ -1,15 +1,9 @@
 extractor:
-  state_store:
-    raw:
-      database: "State Store"
-      table: "Ice Cream API Assets Extractor"
+  dest:
+    database: ice_cream_api
+    table: icapi_assets_extractor
 
-  data_set_ext_id: ds_ice_cream_api
-  upload_interval: 5
-
-api:
-  # url: https://ice-cream-factory.inso-internal.cognite.ai
-  url: https://ice-cream-factory-staging.inso-internal.cognite.ai
+  api_url: https://ice-cream-factory-staging.inso-internal.cognite.ai
 
 cognite:
   host: ${CDF_URL}
@@ -29,3 +23,4 @@ cognite:
 logger:
   console:
     level: INFO
+type: local

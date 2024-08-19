@@ -52,7 +52,11 @@ def process_site(client, data_set_id, lookback_minutes, site):
             dps_df = dps_df.ffill()
 
             # Fill the rest with the opposite
-            first_valid_value = dps_df[f"{asset}:planned_status"].loc[dps_df[f"{asset}:planned_status"].first_valid_index()]
+            try:
+                first_valid_value = dps_df[f"{asset}:planned_status"].loc[dps_df[f"{asset}:planned_status"].first_valid_index()]
+            except:
+                print(f"Failed to find datapoints for {asset}:planned_status")
+                continue
             backfill_value = 1.0 if first_valid_value == 0.0 else 0.0
             dps_df[f"{asset}:planned_status"] = dps_df[f"{asset}:planned_status"].fillna(value=backfill_value)
 

@@ -32,16 +32,14 @@ def run_extractor(
     if "SITES" in os.environ:
         config.extractor.sites = literal_eval(os.environ["SITES"])
     if "BACKFILL" in os.environ:
-        print(os.environ["BACKFILL"])
         config.extractor.backfill = True if os.environ["BACKFILL"] == "True" else False
-        print(config.extractor.backfill)
         if "HOURS" in os.environ:
             config.extractor.hours = int(os.environ["HOURS"])
 
     now = datetime.now(timezone.utc).timestamp() * 1000
     increment = timedelta(seconds=7200).total_seconds() * 1000
     
-    ice_cream_api = IceCreamFactoryAPI(base_url=config.api.url)
+    ice_cream_api = IceCreamFactoryAPI(base_url=config.extractor.api_url)
     
     upload_queue = TimeSeriesUploadQueue(
         client,

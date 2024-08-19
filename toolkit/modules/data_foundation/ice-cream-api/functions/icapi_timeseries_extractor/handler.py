@@ -13,27 +13,19 @@ def run_extractor(
     client: CogniteClient, states: AbstractStateStore, config: Config, stop_event: Event
 ) -> None:
 
-    ice_cream_api = IceCreamFactoryAPI(base_url=config.api.url)
-    assets = ice_cream_api.get_assets()
+    ice_cream_api = IceCreamFactoryAPI(base_url=config.extractor.api_url)
+    time_series = ice_cream_api.get_timeseries()
 
-    # add the dataset to all assets
+    # add the dataset to all TimeSeries
     data_set = client.data_sets.retrieve(external_id=config.extractor.data_set_ext_id)
     if not data_set:
         stop_event.set()
         print(f"Data set {config.extractor.data_set_ext_id} not found")
     
-    for asset in assets:
-        asset.data_set_id = data_set.id
+    for ts in time_series:
+        ts.data_set_id = data_set.id
 
-    try:
-        print(f"{len(assets)} Assets found")
-        client.assets.create_hierarchy(assets=assets, upsert=True)
-    except Exception as e:
-        for key, value in e.duplicates.items():
-            print(key)
-            for val in value:
-                print(val)
-
+    client.time_series.upsert(item=time_series)
 
 def handle(client: CogniteClient = None, data = None):
     if data:
