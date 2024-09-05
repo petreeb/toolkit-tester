@@ -1,0 +1,15 @@
+- name: oee_timeseries
+  externalId: oee_timeseries
+  owner: CDF Bootcamp Team
+  description: Function to calculate OEE
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ CDF_PROJECT }}
+    CDF_URL: {{ CDF_URL }}
+    IDP_TENANT_ID: {{ IDP_TENANT_ID }}
+    IDP_CLIENT_ID: {{ IDP_CLIENT_ID }}
+    IDP_CLIENT_SECRET: {{ IDP_CLIENT_SECRET }}
+    IDP_SCOPES: {{ IDP_SCOPES }}

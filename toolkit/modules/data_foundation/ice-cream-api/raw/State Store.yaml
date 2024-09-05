@@ -1,6 +1,0 @@
-- dbName: State Store
-  tableName: Ice Cream API Assets Extractor
-- dbName: State Store
-  tableName: Ice Cream API Datapoints Extractor
-- dbName: State Store
-  tableName: Ice Cream API Timeseries Extractor

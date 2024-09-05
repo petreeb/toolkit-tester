@@ -98,7 +98,7 @@ def handle(client: CogniteClient = None, data = None):
                 os.environ["HOURS"] = f"{hours}"
 
     with Extractor(
-        name="Ice Cream API Datapoints Extractor",
+        name="icapi_datapoints_extractor",
         description="An extractor that ingest Timeseries' Datapoints from the Ice Cream Factory API to CDF clean",
         config_class=Config,
         version="1.0",

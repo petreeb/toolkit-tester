@@ -1,0 +1,39 @@
+name: gp_icapi_extractors
+sourceId: {{ icapi_extractors_source_id }}
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - projectsAcl:
+      actions: [LIST, READ]
+      scope:
+        all: {}
+  - assetsAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ ice_cream_api_source_dataSetExternalId }}]
+  - timeSeriesAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ ice_cream_api_source_dataSetExternalId }}]
+  - rawAcl:
+      actions: [LIST, READ, WRITE]
+      scope:
+        tableScope:
+          dbsToTables:
+            ice_cream_api: [icapi_assets_extractor]
+            State Store: [icapi_datapoints_extractor]
+  - filesAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ ice_cream_api_source_dataSetExternalId }}]
+  - functionsAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {}
+  - sessionsAcl:
+      actions: [LIST, CREATE, DELETE]
+      scope:
+        all: {}

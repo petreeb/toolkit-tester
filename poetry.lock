@@ -302,13 +302,13 @@ python-json-logger = ">=2.0.7,<3.0.0"
 
 [[package]]
 name = "cognite-sdk"
-version = "7.54.8"
+version = "7.55.0"
 description = "Cognite Python SDK"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "cognite_sdk-7.54.8-py3-none-any.whl", hash = "sha256:935d0e844236abe51fad82622115d585f26dd7fd2f1c67b34c11abba0c5455a0"},
-    {file = "cognite_sdk-7.54.8.tar.gz", hash = "sha256:69f41a56b27ba7830e84a09f6d7b732ec2c5f0b6c061caded894f43aef839b5d"},
+    {file = "cognite_sdk-7.55.0-py3-none-any.whl", hash = "sha256:3e58abde72fba5672be37c9352dc2991d74321aa056a7f5f04fe3b31f6422138"},
+    {file = "cognite_sdk-7.55.0.tar.gz", hash = "sha256:bfda512cd3ffb7c8620f7fa144ce75e5c1e92429adc529b909c041a8d93b94e6"},
 ]
 
 [package.dependencies]
@@ -331,19 +331,19 @@ yaml = ["PyYAML (>=6.0,<7.0)"]
 
 [[package]]
 name = "cognite-toolkit"
-version = "0.2.16"
+version = "0.2.19"
 description = "Official Cognite Data Fusion tool for project templates and configuration deployment"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "cognite_toolkit-0.2.16-py3-none-any.whl", hash = "sha256:d0ed3beb12c1d0bfdba8a41727f5fff3830fdfaafe746140d0c6dc6cb5f0f2c5"},
-    {file = "cognite_toolkit-0.2.16.tar.gz", hash = "sha256:0846cdd8d70473068de7cefa3aceca78fa63a653d38a0e9fd3a2506b57342318"},
+    {file = "cognite_toolkit-0.2.19-py3-none-any.whl", hash = "sha256:bd4df76828ec372c7c059c45e513f26d44ad2705283731598760e12273c0c5a2"},
+    {file = "cognite_toolkit-0.2.19.tar.gz", hash = "sha256:e87a2e19fae7bcd88db2b5b205031d8e4cf987828a7360dcc759073379447508"},
 ]
 
 [package.dependencies]
 cognite-extractor-utils = ">=7"
 cognite-logger = ">=0.6,<0.7"
-cognite-sdk = {version = ">=7.54.8,<8.0.0", extras = ["pandas"]}
+cognite-sdk = {version = ">=7.54.11,<8.0.0", extras = ["pandas"]}
 mixpanel = ">=4.10.1,<5.0.0"
 packaging = ">=22.0,<25.0"
 pandas = ">=1.5.3,<3.0"
@@ -1300,4 +1300,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "47c56dddddb478c5bf73c679e7809f783b6e48f15a4b70f0952b4ac9c0194002"
+content-hash = "383fab06934475b15d4d296295b851597d92d6aa6e72de60b5a6f5f6e8d17975"
