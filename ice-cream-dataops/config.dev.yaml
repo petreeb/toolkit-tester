@@ -11,9 +11,10 @@ variables:
     uc_oee_dataSetExternalId: ds_uc_oee
     gp_data_pipeline_oee_source_id: '1234567890'
     ice_cream_api_source_dataSetExternalId: ds_ice_cream_api
+
     icapi_extractors_source_id: fd739b90-40e8-4ab7-9117-30e9b7eedcc5
-  icapi_extractors_clientId: e5c46312-d74d-4568-95d2-58c649097a21
-  icapi_extractors_clientSecret: pL-8Q~vslkZrWobkxt3roTWssXyRz6TQT6BCGaDZ
+    icapi_extractors_clientId: ${ICAPI_EXTRACTORS_CLIENT_ID}
+    icapi_extractors_clientSecret: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
 
   CDF_PROJECT: ${CDF_PROJECT}
   IDP_CLIENT_ID: ${IDP_CLIENT_ID}
