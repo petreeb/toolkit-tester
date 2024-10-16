@@ -1,7 +1,7 @@
 environment:
-  name: test
-  project: cdf-bootcamp-70-test
-  type: test
+  name: prod
+  project: cdf-bootcamp-70-prod
+  type: prod
   selected:
   - modules/
 
@@ -18,15 +18,15 @@ variables:
       IDP_TOKEN_URL: ${IDP_TOKEN_URL} # replaced by .env
       # Groups
       # OBJECT ID FOR TEST/PROD DATA DEVELOPER ENTRA GROUP
-      data_developer_source_id: b488e198-1643-4b79-8587-33f93c7bc761
+      data_developer_source_id: fb94aae0-e025-4552-b445-f928cc8749eb
       # OBJECT ID FOR TEST/PROD DATA PIPELINE OEE ENTRA GROUP
-      data_pipeline_oee_source_id: 028cea4a-9a84-46b4-b7a1-b6a7a1acca81
+      data_pipeline_oee_source_id: 7851fbe5-aabb-4de6-8471-dc92eaa7b861
       # OBJECT ID FOR TEST/PROD ADMIN TK ENTRA GROUP
-      readwrite_source_id: b5400436-33f8-4882-bdcb-670152f5322c
+      readwrite_source_id: 3af69f37-1d4d-400c-bea9-957041a4a49d
       # OBJECT ID FOR TEST/PROD ADMIN TK ENTRA GROUP
-      readonly_source_id: b5400436-33f8-4882-bdcb-670152f5322c
+      readonly_source_id: 3af69f37-1d4d-400c-bea9-957041a4a49d
       # OBJECT ID FOR TEST/PROD ADMIN TK ENTRA GROUP
-      icapi_extractors_source_id: 855fb525-97e9-48e4-ac25-09b1c1745124
+      icapi_extractors_source_id: 72f018b4-8f35-492c-b08c-440200b5678e
       # Client Ids
       data_pipeline_oee_client_id: ${DATA_PIPELINE_OEE_CLIENT_ID} # replaced by .env
       data_pipeline_oee_client_secret: ${DATA_PIPELINE_OEE_CLIENT_SECRET} # replaced by .env
