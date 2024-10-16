@@ -1,0 +1,14 @@
+externalId: create_asset_hierarchy
+dataSetExternalId: {{ icapi_ds_external_id }}
+name: create_asset_hierarchy
+destination:
+  type: asset_hierarchy
+ignoreNullFields: true
+isPublic: true
+conflictMode: upsert
+authentication:
+    clientId: {{ icapi_extractors_client_id }}
+    clientSecret: {{ icapi_extractors_client_secret }}
+    tokenUri: {{ IDP_TOKEN_URL }}
+    cdfProjectName: {{ CDF_PROJECT }}
+    scopes: [{{ IDP_SCOPES }}]
