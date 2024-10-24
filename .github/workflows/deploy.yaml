@@ -1,4 +1,4 @@
-name: Deploy modules to prod project
+name: Deploy Toolkit
 on:
   push:
     branches:
@@ -35,7 +35,7 @@ jobs:
       ICAPI_EXTRACTORS_CLIENT_ID: ${{ vars.ICAPI_EXTRACTORS_CLIENT_ID }}
       ICAPI_EXTRACTORS_CLIENT_SECRET: ${{ secrets.ICAPI_EXTRACTORS_CLIENT_SECRET }}
 
-    name: Deploy
+    name: Build & Deploy
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
